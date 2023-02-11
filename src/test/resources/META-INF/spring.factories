@@ -1,0 +1,1 @@
+org.springframework.test.context.ContextCustomizerFactory = org.danak.backend.config.TestContainersSpringContextCustomizerFactory
