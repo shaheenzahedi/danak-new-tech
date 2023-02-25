@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20230225210140",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "centre",
+  "fields": [
+    {
+      "fieldName": "createTimeStamp",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Centre",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "child",
+      "otherEntityRelationshipName": "centre",
+      "relationshipName": "child",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "city",
+      "otherEntityRelationshipName": "centre",
+      "relationshipName": "city",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "facilitatorCentreAssociation",
+      "otherEntityRelationshipName": "centre",
+      "relationshipName": "facilitator",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

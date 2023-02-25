@@ -1,0 +1,37 @@
+{
+  "applications": "*",
+  "changelogDate": "20230225210142",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "province",
+  "fields": [
+    {
+      "fieldName": "createTimeStamp",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Province",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "city",
+      "otherEntityRelationshipName": "province",
+      "relationshipName": "city",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "country",
+      "otherEntityRelationshipName": "province",
+      "relationshipName": "country",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

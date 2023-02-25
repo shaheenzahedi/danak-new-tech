@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20230225210143",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "city",
+  "fields": [
+    {
+      "fieldName": "createTimeStamp",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isVillage",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "City",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "centre",
+      "otherEntityRelationshipName": "city",
+      "relationshipName": "centre",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "device",
+      "otherEntityRelationshipName": "city",
+      "relationshipName": "device",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "province",
+      "otherEntityRelationshipName": "city",
+      "relationshipName": "province",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,91 @@
+entity Child{
+	createTimeStamp Instant
+}
+
+entity Device{
+	createTimeStamp Instant
+	universalId UUID
+	globalNum String
+    model String
+    yearBuilt String
+    androidId String
+}
+
+entity Facilitator{
+	createTimeStamp Instant
+}
+
+entity Centre{
+	createTimeStamp Instant
+    name String
+}
+entity FacilitatorCentreAssociation{
+	createTimeStamp Instant
+	joinDate Instant
+}
+
+entity Province{
+	createTimeStamp Instant
+	name String
+}
+
+entity City{
+	createTimeStamp Instant
+	name String
+    isVillage Boolean
+}
+
+entity Country {
+	createTimeStamp Instant
+	name String
+}
+
+entity Progress{
+	createTimeStamp Instant
+	spentTime Long
+}
+
+entity UnitList{
+  createTimeStamp Instant
+  num Integer
+  nickName String
+  type UnitListType
+}
+entity SingleUnit{
+	createTimeStamp Instant
+	globalNum String
+}
+enum UnitListType{
+  STUDY, REVIEW, LIBRARY, GAME
+}
+
+relationship OneToMany {
+	Centre to Child{centre}
+    Child to Progress{child}
+    City to Centre{city}
+    City to Device{city}
+    Province to City{province}
+	Country to Province{country}
+    Device to Child{device}
+    Facilitator to Child{facilitator}
+    SingleUnit to Progress{singleUnit}
+    UnitList to SingleUnit{unitList}
+}
+
+relationship ManyToOne{
+	FacilitatorCentreAssociation{facilitator} to Facilitator{centre}
+    FacilitatorCentreAssociation{centre} to Centre{facilitator}
+}
+
+relationship OneToOne {
+  Child{user} to User
+  Facilitator{user} to User
+}
+
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+

@@ -1,0 +1,53 @@
+{
+  "applications": "*",
+  "changelogDate": "20230225210138",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "device",
+  "fields": [
+    {
+      "fieldName": "createTimeStamp",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "universalId",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "globalNum",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "model",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "yearBuilt",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "androidId",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Device",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "child",
+      "otherEntityRelationshipName": "device",
+      "relationshipName": "child",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "city",
+      "otherEntityRelationshipName": "device",
+      "relationshipName": "city",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

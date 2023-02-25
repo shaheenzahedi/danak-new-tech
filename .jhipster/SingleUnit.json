@@ -1,0 +1,37 @@
+{
+  "applications": "*",
+  "changelogDate": "20230225210147",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "single_unit",
+  "fields": [
+    {
+      "fieldName": "createTimeStamp",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "globalNum",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SingleUnit",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "progress",
+      "otherEntityRelationshipName": "singleUnit",
+      "relationshipName": "progress",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "unitList",
+      "otherEntityRelationshipName": "singleUnit",
+      "relationshipName": "unitList",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

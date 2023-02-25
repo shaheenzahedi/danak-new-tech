@@ -1,0 +1,31 @@
+{
+  "applications": "*",
+  "changelogDate": "20230225210144",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "country",
+  "fields": [
+    {
+      "fieldName": "createTimeStamp",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Country",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "province",
+      "otherEntityRelationshipName": "country",
+      "relationshipName": "province",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

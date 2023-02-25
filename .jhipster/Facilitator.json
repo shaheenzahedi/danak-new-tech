@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20230225210139",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "facilitator",
+  "fields": [
+    {
+      "fieldName": "createTimeStamp",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Facilitator",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "child",
+      "otherEntityRelationshipName": "facilitator",
+      "relationshipName": "child",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "facilitatorCentreAssociation",
+      "otherEntityRelationshipName": "facilitator",
+      "relationshipName": "centre",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

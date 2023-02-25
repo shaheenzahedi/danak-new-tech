@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20230225210146",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "unit_list",
+  "fields": [
+    {
+      "fieldName": "createTimeStamp",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "num",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nickName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "UnitListType",
+      "fieldValues": "STUDY,REVIEW,LIBRARY,GAME"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UnitList",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "singleUnit",
+      "otherEntityRelationshipName": "unitList",
+      "relationshipName": "singleUnit",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

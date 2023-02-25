@@ -1,0 +1,51 @@
+{
+  "applications": "*",
+  "changelogDate": "20230225210137",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "child",
+  "fields": [
+    {
+      "fieldName": "createTimeStamp",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Child",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "progress",
+      "otherEntityRelationshipName": "child",
+      "relationshipName": "progress",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "centre",
+      "otherEntityRelationshipName": "child",
+      "relationshipName": "centre",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "device",
+      "otherEntityRelationshipName": "child",
+      "relationshipName": "device",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "facilitator",
+      "otherEntityRelationshipName": "child",
+      "relationshipName": "facilitator",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
