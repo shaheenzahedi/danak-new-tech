@@ -32,8 +32,8 @@ spring:
       indent-output: true
   data:
     mongodb:
-      uri: mongodb://localhost:27017/?waitQueueMultiple=1000
-      database: danak_backend
+      uri: mongodb://root:example@localhost:27017/danak_backend?authSource=admin
+
   mail:
     host: localhost
     port: 25

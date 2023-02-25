@@ -33,8 +33,9 @@ spring:
       enabled: false
   data:
     mongodb:
-      uri: mongodb://localhost:27017/?waitQueueMultiple=1000
-      database: danak_backend
+      uri: mongodb://localhost:27017/danak_backend?authSource=admin
+      username: root
+      password: example
   mail:
     host: localhost
     port: 25
