@@ -1,0 +1,12 @@
+commonLabels:
+  app.kubernetes.io/genereted-by: JHipster
+
+resources:
+  # Individual apps
+  - danak_backend-k8s/danak_backend-deployment.yml
+  - danak_backend-k8s/danak_backend-service.yml
+  - danak_backend-k8s/danak_backend-mongodb.yml
+  - danak_backend-k8s/jwt-secret.yml
+# service discovery eureka/consul
+
+patchesJson6902:
