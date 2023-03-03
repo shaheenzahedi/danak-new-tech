@@ -35,7 +35,8 @@
       "Country",
       "Progress",
       "UnitList",
-      "SingleUnit"
+      "SingleUnit",
+      "UnitConfig"
     ],
     "entitySuffix": "",
     "ingressDomain": "",
@@ -47,7 +48,7 @@
     "kubernetesServiceType": "LoadBalancer",
     "kubernetesUseDynamicStorage": false,
     "languages": ["en", "fr"],
-    "lastLiquibaseTimestamp": 1677358907000,
+    "lastLiquibaseTimestamp": 1677877280000,
     "messageBroker": false,
     "microfrontend": false,
     "microfrontends": [],

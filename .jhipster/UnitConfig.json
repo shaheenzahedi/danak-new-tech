@@ -1,0 +1,31 @@
+{
+  "applications": "*",
+  "changelogDate": "20230303210120",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "unit_config",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "displayName",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UnitConfig",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "singleUnit",
+      "otherEntityRelationshipName": "config",
+      "relationshipName": "singleUnit",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}
