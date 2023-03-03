@@ -40,8 +40,26 @@ export const SingleUnitDetail = () => {
             <span id="globalNum">Global Num</span>
           </dt>
           <dd>{singleUnitEntity.globalNum}</dd>
+          <dt>
+            <span id="icon">Icon</span>
+          </dt>
+          <dd>{singleUnitEntity.icon}</dd>
+          <dt>
+            <span id="target">Target</span>
+          </dt>
+          <dd>{singleUnitEntity.target}</dd>
+          <dt>
+            <span id="params">Params</span>
+          </dt>
+          <dd>{singleUnitEntity.params}</dd>
+          <dt>
+            <span id="words">Words</span>
+          </dt>
+          <dd>{singleUnitEntity.words}</dd>
           <dt>Unit List</dt>
           <dd>{singleUnitEntity.unitList ? singleUnitEntity.unitList.id : ''}</dd>
+          <dt>Config</dt>
+          <dd>{singleUnitEntity.config ? singleUnitEntity.config.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/single-unit" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

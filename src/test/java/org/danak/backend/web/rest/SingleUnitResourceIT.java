@@ -36,6 +36,18 @@ class SingleUnitResourceIT {
     private static final String DEFAULT_GLOBAL_NUM = "AAAAAAAAAA";
     private static final String UPDATED_GLOBAL_NUM = "BBBBBBBBBB";
 
+    private static final String DEFAULT_ICON = "AAAAAAAAAA";
+    private static final String UPDATED_ICON = "BBBBBBBBBB";
+
+    private static final String DEFAULT_TARGET = "AAAAAAAAAA";
+    private static final String UPDATED_TARGET = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PARAMS = "AAAAAAAAAA";
+    private static final String UPDATED_PARAMS = "BBBBBBBBBB";
+
+    private static final String DEFAULT_WORDS = "AAAAAAAAAA";
+    private static final String UPDATED_WORDS = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/single-units";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -57,7 +69,13 @@ class SingleUnitResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static SingleUnit createEntity() {
-        SingleUnit singleUnit = new SingleUnit().createTimeStamp(DEFAULT_CREATE_TIME_STAMP).globalNum(DEFAULT_GLOBAL_NUM);
+        SingleUnit singleUnit = new SingleUnit()
+            .createTimeStamp(DEFAULT_CREATE_TIME_STAMP)
+            .globalNum(DEFAULT_GLOBAL_NUM)
+            .icon(DEFAULT_ICON)
+            .target(DEFAULT_TARGET)
+            .params(DEFAULT_PARAMS)
+            .words(DEFAULT_WORDS);
         return singleUnit;
     }
 
@@ -68,7 +86,13 @@ class SingleUnitResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static SingleUnit createUpdatedEntity() {
-        SingleUnit singleUnit = new SingleUnit().createTimeStamp(UPDATED_CREATE_TIME_STAMP).globalNum(UPDATED_GLOBAL_NUM);
+        SingleUnit singleUnit = new SingleUnit()
+            .createTimeStamp(UPDATED_CREATE_TIME_STAMP)
+            .globalNum(UPDATED_GLOBAL_NUM)
+            .icon(UPDATED_ICON)
+            .target(UPDATED_TARGET)
+            .params(UPDATED_PARAMS)
+            .words(UPDATED_WORDS);
         return singleUnit;
     }
 
@@ -98,6 +122,10 @@ class SingleUnitResourceIT {
         SingleUnit testSingleUnit = singleUnitList.get(singleUnitList.size() - 1);
         assertThat(testSingleUnit.getCreateTimeStamp()).isEqualTo(DEFAULT_CREATE_TIME_STAMP);
         assertThat(testSingleUnit.getGlobalNum()).isEqualTo(DEFAULT_GLOBAL_NUM);
+        assertThat(testSingleUnit.getIcon()).isEqualTo(DEFAULT_ICON);
+        assertThat(testSingleUnit.getTarget()).isEqualTo(DEFAULT_TARGET);
+        assertThat(testSingleUnit.getParams()).isEqualTo(DEFAULT_PARAMS);
+        assertThat(testSingleUnit.getWords()).isEqualTo(DEFAULT_WORDS);
     }
 
     @Test
@@ -149,6 +177,10 @@ class SingleUnitResourceIT {
         SingleUnit testSingleUnit = singleUnitList.get(0);
         assertThat(testSingleUnit.getCreateTimeStamp()).isEqualTo(DEFAULT_CREATE_TIME_STAMP);
         assertThat(testSingleUnit.getGlobalNum()).isEqualTo(DEFAULT_GLOBAL_NUM);
+        assertThat(testSingleUnit.getIcon()).isEqualTo(DEFAULT_ICON);
+        assertThat(testSingleUnit.getTarget()).isEqualTo(DEFAULT_TARGET);
+        assertThat(testSingleUnit.getParams()).isEqualTo(DEFAULT_PARAMS);
+        assertThat(testSingleUnit.getWords()).isEqualTo(DEFAULT_WORDS);
     }
 
     @Test
@@ -172,7 +204,15 @@ class SingleUnitResourceIT {
             .jsonPath("$.[*].createTimeStamp")
             .value(hasItem(DEFAULT_CREATE_TIME_STAMP.toString()))
             .jsonPath("$.[*].globalNum")
-            .value(hasItem(DEFAULT_GLOBAL_NUM));
+            .value(hasItem(DEFAULT_GLOBAL_NUM))
+            .jsonPath("$.[*].icon")
+            .value(hasItem(DEFAULT_ICON))
+            .jsonPath("$.[*].target")
+            .value(hasItem(DEFAULT_TARGET))
+            .jsonPath("$.[*].params")
+            .value(hasItem(DEFAULT_PARAMS))
+            .jsonPath("$.[*].words")
+            .value(hasItem(DEFAULT_WORDS));
     }
 
     @Test
@@ -196,7 +236,15 @@ class SingleUnitResourceIT {
             .jsonPath("$.createTimeStamp")
             .value(is(DEFAULT_CREATE_TIME_STAMP.toString()))
             .jsonPath("$.globalNum")
-            .value(is(DEFAULT_GLOBAL_NUM));
+            .value(is(DEFAULT_GLOBAL_NUM))
+            .jsonPath("$.icon")
+            .value(is(DEFAULT_ICON))
+            .jsonPath("$.target")
+            .value(is(DEFAULT_TARGET))
+            .jsonPath("$.params")
+            .value(is(DEFAULT_PARAMS))
+            .jsonPath("$.words")
+            .value(is(DEFAULT_WORDS));
     }
 
     @Test
@@ -220,7 +268,13 @@ class SingleUnitResourceIT {
 
         // Update the singleUnit
         SingleUnit updatedSingleUnit = singleUnitRepository.findById(singleUnit.getId()).block();
-        updatedSingleUnit.createTimeStamp(UPDATED_CREATE_TIME_STAMP).globalNum(UPDATED_GLOBAL_NUM);
+        updatedSingleUnit
+            .createTimeStamp(UPDATED_CREATE_TIME_STAMP)
+            .globalNum(UPDATED_GLOBAL_NUM)
+            .icon(UPDATED_ICON)
+            .target(UPDATED_TARGET)
+            .params(UPDATED_PARAMS)
+            .words(UPDATED_WORDS);
         SingleUnitDTO singleUnitDTO = singleUnitMapper.toDto(updatedSingleUnit);
 
         webTestClient
@@ -238,6 +292,10 @@ class SingleUnitResourceIT {
         SingleUnit testSingleUnit = singleUnitList.get(singleUnitList.size() - 1);
         assertThat(testSingleUnit.getCreateTimeStamp()).isEqualTo(UPDATED_CREATE_TIME_STAMP);
         assertThat(testSingleUnit.getGlobalNum()).isEqualTo(UPDATED_GLOBAL_NUM);
+        assertThat(testSingleUnit.getIcon()).isEqualTo(UPDATED_ICON);
+        assertThat(testSingleUnit.getTarget()).isEqualTo(UPDATED_TARGET);
+        assertThat(testSingleUnit.getParams()).isEqualTo(UPDATED_PARAMS);
+        assertThat(testSingleUnit.getWords()).isEqualTo(UPDATED_WORDS);
     }
 
     @Test
@@ -320,7 +378,11 @@ class SingleUnitResourceIT {
         SingleUnit partialUpdatedSingleUnit = new SingleUnit();
         partialUpdatedSingleUnit.setId(singleUnit.getId());
 
-        partialUpdatedSingleUnit.createTimeStamp(UPDATED_CREATE_TIME_STAMP);
+        partialUpdatedSingleUnit
+            .createTimeStamp(UPDATED_CREATE_TIME_STAMP)
+            .target(UPDATED_TARGET)
+            .params(UPDATED_PARAMS)
+            .words(UPDATED_WORDS);
 
         webTestClient
             .patch()
@@ -337,6 +399,10 @@ class SingleUnitResourceIT {
         SingleUnit testSingleUnit = singleUnitList.get(singleUnitList.size() - 1);
         assertThat(testSingleUnit.getCreateTimeStamp()).isEqualTo(UPDATED_CREATE_TIME_STAMP);
         assertThat(testSingleUnit.getGlobalNum()).isEqualTo(DEFAULT_GLOBAL_NUM);
+        assertThat(testSingleUnit.getIcon()).isEqualTo(DEFAULT_ICON);
+        assertThat(testSingleUnit.getTarget()).isEqualTo(UPDATED_TARGET);
+        assertThat(testSingleUnit.getParams()).isEqualTo(UPDATED_PARAMS);
+        assertThat(testSingleUnit.getWords()).isEqualTo(UPDATED_WORDS);
     }
 
     @Test
@@ -350,7 +416,13 @@ class SingleUnitResourceIT {
         SingleUnit partialUpdatedSingleUnit = new SingleUnit();
         partialUpdatedSingleUnit.setId(singleUnit.getId());
 
-        partialUpdatedSingleUnit.createTimeStamp(UPDATED_CREATE_TIME_STAMP).globalNum(UPDATED_GLOBAL_NUM);
+        partialUpdatedSingleUnit
+            .createTimeStamp(UPDATED_CREATE_TIME_STAMP)
+            .globalNum(UPDATED_GLOBAL_NUM)
+            .icon(UPDATED_ICON)
+            .target(UPDATED_TARGET)
+            .params(UPDATED_PARAMS)
+            .words(UPDATED_WORDS);
 
         webTestClient
             .patch()
@@ -367,6 +439,10 @@ class SingleUnitResourceIT {
         SingleUnit testSingleUnit = singleUnitList.get(singleUnitList.size() - 1);
         assertThat(testSingleUnit.getCreateTimeStamp()).isEqualTo(UPDATED_CREATE_TIME_STAMP);
         assertThat(testSingleUnit.getGlobalNum()).isEqualTo(UPDATED_GLOBAL_NUM);
+        assertThat(testSingleUnit.getIcon()).isEqualTo(UPDATED_ICON);
+        assertThat(testSingleUnit.getTarget()).isEqualTo(UPDATED_TARGET);
+        assertThat(testSingleUnit.getParams()).isEqualTo(UPDATED_PARAMS);
+        assertThat(testSingleUnit.getWords()).isEqualTo(UPDATED_WORDS);
     }
 
     @Test

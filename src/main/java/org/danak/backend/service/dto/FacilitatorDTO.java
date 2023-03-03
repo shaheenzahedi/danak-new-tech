@@ -15,6 +15,8 @@ public class FacilitatorDTO implements Serializable {
 
     private UserDTO user;
 
+    private UserDTO referedBy;
+
     public String getId() {
         return id;
     }
@@ -37,6 +39,14 @@ public class FacilitatorDTO implements Serializable {
 
     public void setUser(UserDTO user) {
         this.user = user;
+    }
+
+    public UserDTO getReferedBy() {
+        return referedBy;
+    }
+
+    public void setReferedBy(UserDTO referedBy) {
+        this.referedBy = referedBy;
     }
 
     @Override
@@ -67,6 +77,7 @@ public class FacilitatorDTO implements Serializable {
             "id='" + getId() + "'" +
             ", createTimeStamp='" + getCreateTimeStamp() + "'" +
             ", user=" + getUser() +
+            ", referedBy=" + getReferedBy() +
             "}";
     }
 }

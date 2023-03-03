@@ -1,9 +1,11 @@
 package org.danak.backend.service.mapper;
 
 import org.danak.backend.domain.Child;
+import org.danak.backend.domain.Device;
 import org.danak.backend.domain.Progress;
 import org.danak.backend.domain.SingleUnit;
 import org.danak.backend.service.dto.ChildDTO;
+import org.danak.backend.service.dto.DeviceDTO;
 import org.danak.backend.service.dto.ProgressDTO;
 import org.danak.backend.service.dto.SingleUnitDTO;
 import org.mapstruct.*;
@@ -14,6 +16,7 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface ProgressMapper extends EntityMapper<ProgressDTO, Progress> {
     @Mapping(target = "child", source = "child", qualifiedByName = "childId")
+    @Mapping(target = "createdByDevice", source = "createdByDevice", qualifiedByName = "deviceId")
     @Mapping(target = "singleUnit", source = "singleUnit", qualifiedByName = "singleUnitId")
     ProgressDTO toDto(Progress s);
 
@@ -21,6 +24,11 @@ public interface ProgressMapper extends EntityMapper<ProgressDTO, Progress> {
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
     ChildDTO toDtoChildId(Child child);
+
+    @Named("deviceId")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    DeviceDTO toDtoDeviceId(Device device);
 
     @Named("singleUnitId")
     @BeanMapping(ignoreByDefault = true)

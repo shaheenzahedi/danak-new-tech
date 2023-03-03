@@ -49,7 +49,12 @@ export const SingleUnit = () => {
                 <th>ID</th>
                 <th>Create Time Stamp</th>
                 <th>Global Num</th>
+                <th>Icon</th>
+                <th>Target</th>
+                <th>Params</th>
+                <th>Words</th>
                 <th>Unit List</th>
+                <th>Config</th>
                 <th />
               </tr>
             </thead>
@@ -67,7 +72,12 @@ export const SingleUnit = () => {
                     ) : null}
                   </td>
                   <td>{singleUnit.globalNum}</td>
+                  <td>{singleUnit.icon}</td>
+                  <td>{singleUnit.target}</td>
+                  <td>{singleUnit.params}</td>
+                  <td>{singleUnit.words}</td>
                   <td>{singleUnit.unitList ? <Link to={`/unit-list/${singleUnit.unitList.id}`}>{singleUnit.unitList.id}</Link> : ''}</td>
+                  <td>{singleUnit.config ? <Link to={`/unit-config/${singleUnit.config.id}`}>{singleUnit.config.id}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/single-unit/${singleUnit.id}`} color="info" size="sm" data-cy="entityDetailsButton">

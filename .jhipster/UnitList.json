@@ -14,13 +14,18 @@
       "fieldType": "Integer"
     },
     {
-      "fieldName": "nickName",
+      "fieldName": "displayName",
       "fieldType": "String"
     },
     {
       "fieldName": "type",
       "fieldType": "UnitListType",
       "fieldValues": "STUDY,REVIEW,LIBRARY,GAME"
+    },
+    {
+      "fieldName": "presenter",
+      "fieldType": "PresenterName",
+      "fieldValues": "SAM,SARA,NONE"
     }
   ],
   "fluentMethods": true,

@@ -17,6 +17,8 @@ public class ProgressDTO implements Serializable {
 
     private ChildDTO child;
 
+    private DeviceDTO createdByDevice;
+
     private SingleUnitDTO singleUnit;
 
     public String getId() {
@@ -49,6 +51,14 @@ public class ProgressDTO implements Serializable {
 
     public void setChild(ChildDTO child) {
         this.child = child;
+    }
+
+    public DeviceDTO getCreatedByDevice() {
+        return createdByDevice;
+    }
+
+    public void setCreatedByDevice(DeviceDTO createdByDevice) {
+        this.createdByDevice = createdByDevice;
     }
 
     public SingleUnitDTO getSingleUnit() {
@@ -88,6 +98,7 @@ public class ProgressDTO implements Serializable {
             ", createTimeStamp='" + getCreateTimeStamp() + "'" +
             ", spentTime=" + getSpentTime() +
             ", child=" + getChild() +
+            ", createdByDevice=" + getCreatedByDevice() +
             ", singleUnit=" + getSingleUnit() +
             "}";
     }

@@ -38,6 +38,8 @@ export const FacilitatorDetail = () => {
           </dd>
           <dt>User</dt>
           <dd>{facilitatorEntity.user ? facilitatorEntity.user.id : ''}</dd>
+          <dt>Refered By</dt>
+          <dd>{facilitatorEntity.referedBy ? facilitatorEntity.referedBy.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/facilitator" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

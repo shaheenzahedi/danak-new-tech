@@ -48,15 +48,27 @@ entity Progress{
 entity UnitList{
   createTimeStamp Instant
   num Integer
-  nickName String
+  displayName String
   type UnitListType
+  presenter PresenterName
 }
 entity SingleUnit{
 	createTimeStamp Instant
 	globalNum String
+    icon String
+    target String
+    params String
+    words String
+}
+entity UnitConfig{
+	name String
+    displayName String
 }
 enum UnitListType{
   STUDY, REVIEW, LIBRARY, GAME
+}
+enum PresenterName{
+	SAM, SARA, NONE
 }
 
 relationship OneToMany {
@@ -67,14 +79,17 @@ relationship OneToMany {
     Province to City{province}
 	Country to Province{country}
     Device to Child{device}
+    Device to Progress{createdByDevice}
     Facilitator to Child{facilitator}
     SingleUnit to Progress{singleUnit}
     UnitList to SingleUnit{unitList}
+    UnitConfig to SingleUnit{config}
 }
 
 relationship ManyToOne{
 	FacilitatorCentreAssociation{facilitator} to Facilitator{centre}
     FacilitatorCentreAssociation{centre} to Centre{facilitator}
+    Facilitator{referedBy} to User
 }
 
 relationship OneToOne {

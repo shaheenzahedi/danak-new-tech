@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IUnitList } from 'app/shared/model/unit-list.model';
 import { UnitListType } from 'app/shared/model/enumerations/unit-list-type.model';
+import { PresenterName } from 'app/shared/model/enumerations/presenter-name.model';
 import { getEntity, updateEntity, createEntity, reset } from './unit-list.reducer';
 
 export const UnitListUpdate = () => {
@@ -25,6 +26,7 @@ export const UnitListUpdate = () => {
   const updating = useAppSelector(state => state.unitList.updating);
   const updateSuccess = useAppSelector(state => state.unitList.updateSuccess);
   const unitListTypeValues = Object.keys(UnitListType);
+  const presenterNameValues = Object.keys(PresenterName);
 
   const handleClose = () => {
     navigate('/unit-list');
@@ -66,6 +68,7 @@ export const UnitListUpdate = () => {
         }
       : {
           type: 'STUDY',
+          presenter: 'SAM',
           ...unitListEntity,
           createTimeStamp: convertDateTimeFromServer(unitListEntity.createTimeStamp),
         };
@@ -95,11 +98,18 @@ export const UnitListUpdate = () => {
                 placeholder="YYYY-MM-DD HH:mm"
               />
               <ValidatedField label="Num" id="unit-list-num" name="num" data-cy="num" type="text" />
-              <ValidatedField label="Nick Name" id="unit-list-nickName" name="nickName" data-cy="nickName" type="text" />
+              <ValidatedField label="Display Name" id="unit-list-displayName" name="displayName" data-cy="displayName" type="text" />
               <ValidatedField label="Type" id="unit-list-type" name="type" data-cy="type" type="select">
                 {unitListTypeValues.map(unitListType => (
                   <option value={unitListType} key={unitListType}>
                     {unitListType}
+                  </option>
+                ))}
+              </ValidatedField>
+              <ValidatedField label="Presenter" id="unit-list-presenter" name="presenter" data-cy="presenter" type="select">
+                {presenterNameValues.map(presenterName => (
+                  <option value={presenterName} key={presenterName}>
+                    {presenterName}
                   </option>
                 ))}
               </ValidatedField>

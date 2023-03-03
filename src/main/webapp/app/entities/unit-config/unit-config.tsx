@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
-import { Translate, TextFormat } from 'react-jhipster';
+import { Translate } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { IFacilitator } from 'app/shared/model/facilitator.model';
-import { getEntities } from './facilitator.reducer';
+import { IUnitConfig } from 'app/shared/model/unit-config.model';
+import { getEntities } from './unit-config.reducer';
 
-export const Facilitator = () => {
+export const UnitConfig = () => {
   const dispatch = useAppDispatch();
 
   const location = useLocation();
   const navigate = useNavigate();
 
-  const facilitatorList = useAppSelector(state => state.facilitator.entities);
-  const loading = useAppSelector(state => state.facilitator.loading);
+  const unitConfigList = useAppSelector(state => state.unitConfig.entities);
+  const loading = useAppSelector(state => state.unitConfig.loading);
 
   useEffect(() => {
     dispatch(getEntities({}));
@@ -29,54 +29,48 @@ export const Facilitator = () => {
 
   return (
     <div>
-      <h2 id="facilitator-heading" data-cy="FacilitatorHeading">
-        Facilitators
+      <h2 id="unit-config-heading" data-cy="UnitConfigHeading">
+        Unit Configs
         <div className="d-flex justify-content-end">
           <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} /> Refresh list
           </Button>
-          <Link to="/facilitator/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
+          <Link to="/unit-config/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
             <FontAwesomeIcon icon="plus" />
-            &nbsp; Create a new Facilitator
+            &nbsp; Create a new Unit Config
           </Link>
         </div>
       </h2>
       <div className="table-responsive">
-        {facilitatorList && facilitatorList.length > 0 ? (
+        {unitConfigList && unitConfigList.length > 0 ? (
           <Table responsive>
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Create Time Stamp</th>
-                <th>User</th>
-                <th>Refered By</th>
+                <th>Name</th>
+                <th>Display Name</th>
                 <th />
               </tr>
             </thead>
             <tbody>
-              {facilitatorList.map((facilitator, i) => (
+              {unitConfigList.map((unitConfig, i) => (
                 <tr key={`entity-${i}`} data-cy="entityTable">
                   <td>
-                    <Button tag={Link} to={`/facilitator/${facilitator.id}`} color="link" size="sm">
-                      {facilitator.id}
+                    <Button tag={Link} to={`/unit-config/${unitConfig.id}`} color="link" size="sm">
+                      {unitConfig.id}
                     </Button>
                   </td>
-                  <td>
-                    {facilitator.createTimeStamp ? (
-                      <TextFormat type="date" value={facilitator.createTimeStamp} format={APP_DATE_FORMAT} />
-                    ) : null}
-                  </td>
-                  <td>{facilitator.user ? facilitator.user.id : ''}</td>
-                  <td>{facilitator.referedBy ? facilitator.referedBy.id : ''}</td>
+                  <td>{unitConfig.name}</td>
+                  <td>{unitConfig.displayName}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`/facilitator/${facilitator.id}`} color="info" size="sm" data-cy="entityDetailsButton">
+                      <Button tag={Link} to={`/unit-config/${unitConfig.id}`} color="info" size="sm" data-cy="entityDetailsButton">
                         <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
                       </Button>
-                      <Button tag={Link} to={`/facilitator/${facilitator.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
+                      <Button tag={Link} to={`/unit-config/${unitConfig.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
                         <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
                       </Button>
-                      <Button tag={Link} to={`/facilitator/${facilitator.id}/delete`} color="danger" size="sm" data-cy="entityDeleteButton">
+                      <Button tag={Link} to={`/unit-config/${unitConfig.id}/delete`} color="danger" size="sm" data-cy="entityDeleteButton">
                         <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Delete</span>
                       </Button>
                     </div>
@@ -86,11 +80,11 @@ export const Facilitator = () => {
             </tbody>
           </Table>
         ) : (
-          !loading && <div className="alert alert-warning">No Facilitators found</div>
+          !loading && <div className="alert alert-warning">No Unit Configs found</div>
         )}
       </div>
     </div>
   );
 };
 
-export default Facilitator;
+export default UnitConfig;

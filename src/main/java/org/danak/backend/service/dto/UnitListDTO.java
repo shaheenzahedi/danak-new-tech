@@ -3,6 +3,7 @@ package org.danak.backend.service.dto;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
+import org.danak.backend.domain.enumeration.PresenterName;
 import org.danak.backend.domain.enumeration.UnitListType;
 
 /**
@@ -16,9 +17,11 @@ public class UnitListDTO implements Serializable {
 
     private Integer num;
 
-    private String nickName;
+    private String displayName;
 
     private UnitListType type;
+
+    private PresenterName presenter;
 
     public String getId() {
         return id;
@@ -44,12 +47,12 @@ public class UnitListDTO implements Serializable {
         this.num = num;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public UnitListType getType() {
@@ -58,6 +61,14 @@ public class UnitListDTO implements Serializable {
 
     public void setType(UnitListType type) {
         this.type = type;
+    }
+
+    public PresenterName getPresenter() {
+        return presenter;
+    }
+
+    public void setPresenter(PresenterName presenter) {
+        this.presenter = presenter;
     }
 
     @Override
@@ -88,8 +99,9 @@ public class UnitListDTO implements Serializable {
             "id='" + getId() + "'" +
             ", createTimeStamp='" + getCreateTimeStamp() + "'" +
             ", num=" + getNum() +
-            ", nickName='" + getNickName() + "'" +
+            ", displayName='" + getDisplayName() + "'" +
             ", type='" + getType() + "'" +
+            ", presenter='" + getPresenter() + "'" +
             "}";
     }
 }

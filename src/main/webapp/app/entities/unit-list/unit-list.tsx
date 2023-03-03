@@ -49,8 +49,9 @@ export const UnitList = () => {
                 <th>ID</th>
                 <th>Create Time Stamp</th>
                 <th>Num</th>
-                <th>Nick Name</th>
+                <th>Display Name</th>
                 <th>Type</th>
+                <th>Presenter</th>
                 <th />
               </tr>
             </thead>
@@ -66,8 +67,9 @@ export const UnitList = () => {
                     {unitList.createTimeStamp ? <TextFormat type="date" value={unitList.createTimeStamp} format={APP_DATE_FORMAT} /> : null}
                   </td>
                   <td>{unitList.num}</td>
-                  <td>{unitList.nickName}</td>
+                  <td>{unitList.displayName}</td>
                   <td>{unitList.type}</td>
+                  <td>{unitList.presenter}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/unit-list/${unitList.id}`} color="info" size="sm" data-cy="entityDetailsButton">

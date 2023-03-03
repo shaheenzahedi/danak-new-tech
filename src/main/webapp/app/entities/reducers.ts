@@ -9,6 +9,7 @@ import country from 'app/entities/country/country.reducer';
 import progress from 'app/entities/progress/progress.reducer';
 import unitList from 'app/entities/unit-list/unit-list.reducer';
 import singleUnit from 'app/entities/single-unit/single-unit.reducer';
+import unitConfig from 'app/entities/unit-config/unit-config.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const entitiesReducers = {
@@ -23,6 +24,7 @@ const entitiesReducers = {
   progress,
   unitList,
   singleUnit,
+  unitConfig,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
 };
 

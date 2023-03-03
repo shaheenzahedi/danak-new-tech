@@ -27,6 +27,12 @@
       "relationshipType": "many-to-one"
     },
     {
+      "otherEntityName": "device",
+      "otherEntityRelationshipName": "progress",
+      "relationshipName": "createdByDevice",
+      "relationshipType": "many-to-one"
+    },
+    {
       "otherEntityName": "singleUnit",
       "otherEntityRelationshipName": "progress",
       "relationshipName": "singleUnit",

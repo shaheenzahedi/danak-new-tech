@@ -41,13 +41,17 @@ export const UnitListDetail = () => {
           </dt>
           <dd>{unitListEntity.num}</dd>
           <dt>
-            <span id="nickName">Nick Name</span>
+            <span id="displayName">Display Name</span>
           </dt>
-          <dd>{unitListEntity.nickName}</dd>
+          <dd>{unitListEntity.displayName}</dd>
           <dt>
             <span id="type">Type</span>
           </dt>
           <dd>{unitListEntity.type}</dd>
+          <dt>
+            <span id="presenter">Presenter</span>
+          </dt>
+          <dd>{unitListEntity.presenter}</dd>
         </dl>
         <Button tag={Link} to="/unit-list" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

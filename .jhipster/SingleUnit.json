@@ -12,6 +12,22 @@
     {
       "fieldName": "globalNum",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "icon",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "target",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "params",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "words",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,
@@ -30,6 +46,12 @@
       "otherEntityName": "unitList",
       "otherEntityRelationshipName": "singleUnit",
       "relationshipName": "unitList",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "unitConfig",
+      "otherEntityRelationshipName": "singleUnit",
+      "relationshipName": "config",
       "relationshipType": "many-to-one"
     }
   ],

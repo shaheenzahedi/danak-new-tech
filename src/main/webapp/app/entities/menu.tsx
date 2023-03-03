@@ -39,6 +39,9 @@ const EntitiesMenu = () => {
       <MenuItem icon="asterisk" to="/single-unit">
         Single Unit
       </MenuItem>
+      <MenuItem icon="asterisk" to="/unit-config">
+        Unit Config
+      </MenuItem>
       {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
     </>
   );

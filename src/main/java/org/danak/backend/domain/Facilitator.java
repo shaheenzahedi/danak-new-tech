@@ -30,6 +30,9 @@ public class Facilitator implements Serializable {
     @JsonIgnoreProperties(value = { "user", "progresses", "centre", "device", "facilitator" }, allowSetters = true)
     private Set<Child> children = new HashSet<>();
 
+    @Field("referedBy")
+    private User referedBy;
+
     @Field("centre")
     @JsonIgnoreProperties(value = { "facilitator", "centre" }, allowSetters = true)
     private Set<FacilitatorCentreAssociation> centres = new HashSet<>();
@@ -103,6 +106,19 @@ public class Facilitator implements Serializable {
     public Facilitator removeChild(Child child) {
         this.children.remove(child);
         child.setFacilitator(null);
+        return this;
+    }
+
+    public User getReferedBy() {
+        return this.referedBy;
+    }
+
+    public void setReferedBy(User user) {
+        this.referedBy = user;
+    }
+
+    public Facilitator referedBy(User user) {
+        this.setReferedBy(user);
         return this;
     }
 

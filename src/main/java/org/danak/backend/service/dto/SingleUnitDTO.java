@@ -15,7 +15,17 @@ public class SingleUnitDTO implements Serializable {
 
     private String globalNum;
 
+    private String icon;
+
+    private String target;
+
+    private String params;
+
+    private String words;
+
     private UnitListDTO unitList;
+
+    private UnitConfigDTO config;
 
     public String getId() {
         return id;
@@ -41,12 +51,52 @@ public class SingleUnitDTO implements Serializable {
         this.globalNum = globalNum;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
+    public String getParams() {
+        return params;
+    }
+
+    public void setParams(String params) {
+        this.params = params;
+    }
+
+    public String getWords() {
+        return words;
+    }
+
+    public void setWords(String words) {
+        this.words = words;
+    }
+
     public UnitListDTO getUnitList() {
         return unitList;
     }
 
     public void setUnitList(UnitListDTO unitList) {
         this.unitList = unitList;
+    }
+
+    public UnitConfigDTO getConfig() {
+        return config;
+    }
+
+    public void setConfig(UnitConfigDTO config) {
+        this.config = config;
     }
 
     @Override
@@ -77,7 +127,12 @@ public class SingleUnitDTO implements Serializable {
             "id='" + getId() + "'" +
             ", createTimeStamp='" + getCreateTimeStamp() + "'" +
             ", globalNum='" + getGlobalNum() + "'" +
+            ", icon='" + getIcon() + "'" +
+            ", target='" + getTarget() + "'" +
+            ", params='" + getParams() + "'" +
+            ", words='" + getWords() + "'" +
             ", unitList=" + getUnitList() +
+            ", config=" + getConfig() +
             "}";
     }
 }

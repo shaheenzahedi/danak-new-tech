@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IUnitList } from 'app/shared/model/unit-list.model';
 import { getEntities as getUnitLists } from 'app/entities/unit-list/unit-list.reducer';
+import { IUnitConfig } from 'app/shared/model/unit-config.model';
+import { getEntities as getUnitConfigs } from 'app/entities/unit-config/unit-config.reducer';
 import { ISingleUnit } from 'app/shared/model/single-unit.model';
 import { getEntity, updateEntity, createEntity, reset } from './single-unit.reducer';
 
@@ -22,6 +24,7 @@ export const SingleUnitUpdate = () => {
   const isNew = id === undefined;
 
   const unitLists = useAppSelector(state => state.unitList.entities);
+  const unitConfigs = useAppSelector(state => state.unitConfig.entities);
   const singleUnitEntity = useAppSelector(state => state.singleUnit.entity);
   const loading = useAppSelector(state => state.singleUnit.loading);
   const updating = useAppSelector(state => state.singleUnit.updating);
@@ -39,6 +42,7 @@ export const SingleUnitUpdate = () => {
     }
 
     dispatch(getUnitLists({}));
+    dispatch(getUnitConfigs({}));
   }, []);
 
   useEffect(() => {
@@ -54,6 +58,7 @@ export const SingleUnitUpdate = () => {
       ...singleUnitEntity,
       ...values,
       unitList: unitLists.find(it => it.id.toString() === values.unitList.toString()),
+      config: unitConfigs.find(it => it.id.toString() === values.config.toString()),
     };
 
     if (isNew) {
@@ -72,6 +77,7 @@ export const SingleUnitUpdate = () => {
           ...singleUnitEntity,
           createTimeStamp: convertDateTimeFromServer(singleUnitEntity.createTimeStamp),
           unitList: singleUnitEntity?.unitList?.id,
+          config: singleUnitEntity?.config?.id,
         };
 
   return (
@@ -99,10 +105,24 @@ export const SingleUnitUpdate = () => {
                 placeholder="YYYY-MM-DD HH:mm"
               />
               <ValidatedField label="Global Num" id="single-unit-globalNum" name="globalNum" data-cy="globalNum" type="text" />
+              <ValidatedField label="Icon" id="single-unit-icon" name="icon" data-cy="icon" type="text" />
+              <ValidatedField label="Target" id="single-unit-target" name="target" data-cy="target" type="text" />
+              <ValidatedField label="Params" id="single-unit-params" name="params" data-cy="params" type="text" />
+              <ValidatedField label="Words" id="single-unit-words" name="words" data-cy="words" type="text" />
               <ValidatedField id="single-unit-unitList" name="unitList" data-cy="unitList" label="Unit List" type="select">
                 <option value="" key="0" />
                 {unitLists
                   ? unitLists.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField id="single-unit-config" name="config" data-cy="config" label="Config" type="select">
+                <option value="" key="0" />
+                {unitConfigs
+                  ? unitConfigs.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.id}
                       </option>

@@ -43,6 +43,10 @@ public class Device implements Serializable {
     @JsonIgnoreProperties(value = { "user", "progresses", "centre", "device", "facilitator" }, allowSetters = true)
     private Set<Child> children = new HashSet<>();
 
+    @Field("progress")
+    @JsonIgnoreProperties(value = { "child", "createdByDevice", "singleUnit" }, allowSetters = true)
+    private Set<Progress> progresses = new HashSet<>();
+
     @Field("city")
     @JsonIgnoreProperties(value = { "centres", "devices", "province" }, allowSetters = true)
     private City city;
@@ -168,6 +172,37 @@ public class Device implements Serializable {
     public Device removeChild(Child child) {
         this.children.remove(child);
         child.setDevice(null);
+        return this;
+    }
+
+    public Set<Progress> getProgresses() {
+        return this.progresses;
+    }
+
+    public void setProgresses(Set<Progress> progresses) {
+        if (this.progresses != null) {
+            this.progresses.forEach(i -> i.setCreatedByDevice(null));
+        }
+        if (progresses != null) {
+            progresses.forEach(i -> i.setCreatedByDevice(this));
+        }
+        this.progresses = progresses;
+    }
+
+    public Device progresses(Set<Progress> progresses) {
+        this.setProgresses(progresses);
+        return this;
+    }
+
+    public Device addProgress(Progress progress) {
+        this.progresses.add(progress);
+        progress.setCreatedByDevice(this);
+        return this;
+    }
+
+    public Device removeProgress(Progress progress) {
+        this.progresses.remove(progress);
+        progress.setCreatedByDevice(null);
         return this;
     }
 

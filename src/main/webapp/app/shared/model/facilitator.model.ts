@@ -8,6 +8,7 @@ export interface IFacilitator {
   createTimeStamp?: string | null;
   user?: IUser | null;
   children?: IChild[] | null;
+  referedBy?: IUser | null;
   centres?: IFacilitatorCentreAssociation[] | null;
 }
 

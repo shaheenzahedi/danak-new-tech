@@ -43,6 +43,12 @@
       "relationshipType": "one-to-many"
     },
     {
+      "otherEntityName": "progress",
+      "otherEntityRelationshipName": "createdByDevice",
+      "relationshipName": "progress",
+      "relationshipType": "one-to-many"
+    },
+    {
       "otherEntityName": "city",
       "otherEntityRelationshipName": "device",
       "relationshipName": "city",

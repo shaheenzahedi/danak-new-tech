@@ -12,6 +12,7 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface FacilitatorMapper extends EntityMapper<FacilitatorDTO, Facilitator> {
     @Mapping(target = "user", source = "user", qualifiedByName = "userId")
+    @Mapping(target = "referedBy", source = "referedBy", qualifiedByName = "userId")
     FacilitatorDTO toDto(Facilitator s);
 
     @Named("userId")

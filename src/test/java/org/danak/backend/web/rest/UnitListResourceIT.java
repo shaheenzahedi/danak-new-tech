@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 import org.danak.backend.IntegrationTest;
 import org.danak.backend.domain.UnitList;
+import org.danak.backend.domain.enumeration.PresenterName;
 import org.danak.backend.domain.enumeration.UnitListType;
 import org.danak.backend.repository.UnitListRepository;
 import org.danak.backend.service.dto.UnitListDTO;
@@ -37,11 +38,14 @@ class UnitListResourceIT {
     private static final Integer DEFAULT_NUM = 1;
     private static final Integer UPDATED_NUM = 2;
 
-    private static final String DEFAULT_NICK_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NICK_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_DISPLAY_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_DISPLAY_NAME = "BBBBBBBBBB";
 
     private static final UnitListType DEFAULT_TYPE = UnitListType.STUDY;
     private static final UnitListType UPDATED_TYPE = UnitListType.REVIEW;
+
+    private static final PresenterName DEFAULT_PRESENTER = PresenterName.SAM;
+    private static final PresenterName UPDATED_PRESENTER = PresenterName.SARA;
 
     private static final String ENTITY_API_URL = "/api/unit-lists";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -67,8 +71,9 @@ class UnitListResourceIT {
         UnitList unitList = new UnitList()
             .createTimeStamp(DEFAULT_CREATE_TIME_STAMP)
             .num(DEFAULT_NUM)
-            .nickName(DEFAULT_NICK_NAME)
-            .type(DEFAULT_TYPE);
+            .displayName(DEFAULT_DISPLAY_NAME)
+            .type(DEFAULT_TYPE)
+            .presenter(DEFAULT_PRESENTER);
         return unitList;
     }
 
@@ -82,8 +87,9 @@ class UnitListResourceIT {
         UnitList unitList = new UnitList()
             .createTimeStamp(UPDATED_CREATE_TIME_STAMP)
             .num(UPDATED_NUM)
-            .nickName(UPDATED_NICK_NAME)
-            .type(UPDATED_TYPE);
+            .displayName(UPDATED_DISPLAY_NAME)
+            .type(UPDATED_TYPE)
+            .presenter(UPDATED_PRESENTER);
         return unitList;
     }
 
@@ -113,8 +119,9 @@ class UnitListResourceIT {
         UnitList testUnitList = unitListList.get(unitListList.size() - 1);
         assertThat(testUnitList.getCreateTimeStamp()).isEqualTo(DEFAULT_CREATE_TIME_STAMP);
         assertThat(testUnitList.getNum()).isEqualTo(DEFAULT_NUM);
-        assertThat(testUnitList.getNickName()).isEqualTo(DEFAULT_NICK_NAME);
+        assertThat(testUnitList.getDisplayName()).isEqualTo(DEFAULT_DISPLAY_NAME);
         assertThat(testUnitList.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testUnitList.getPresenter()).isEqualTo(DEFAULT_PRESENTER);
     }
 
     @Test
@@ -166,8 +173,9 @@ class UnitListResourceIT {
         UnitList testUnitList = unitListList.get(0);
         assertThat(testUnitList.getCreateTimeStamp()).isEqualTo(DEFAULT_CREATE_TIME_STAMP);
         assertThat(testUnitList.getNum()).isEqualTo(DEFAULT_NUM);
-        assertThat(testUnitList.getNickName()).isEqualTo(DEFAULT_NICK_NAME);
+        assertThat(testUnitList.getDisplayName()).isEqualTo(DEFAULT_DISPLAY_NAME);
         assertThat(testUnitList.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testUnitList.getPresenter()).isEqualTo(DEFAULT_PRESENTER);
     }
 
     @Test
@@ -192,10 +200,12 @@ class UnitListResourceIT {
             .value(hasItem(DEFAULT_CREATE_TIME_STAMP.toString()))
             .jsonPath("$.[*].num")
             .value(hasItem(DEFAULT_NUM))
-            .jsonPath("$.[*].nickName")
-            .value(hasItem(DEFAULT_NICK_NAME))
+            .jsonPath("$.[*].displayName")
+            .value(hasItem(DEFAULT_DISPLAY_NAME))
             .jsonPath("$.[*].type")
-            .value(hasItem(DEFAULT_TYPE.toString()));
+            .value(hasItem(DEFAULT_TYPE.toString()))
+            .jsonPath("$.[*].presenter")
+            .value(hasItem(DEFAULT_PRESENTER.toString()));
     }
 
     @Test
@@ -220,10 +230,12 @@ class UnitListResourceIT {
             .value(is(DEFAULT_CREATE_TIME_STAMP.toString()))
             .jsonPath("$.num")
             .value(is(DEFAULT_NUM))
-            .jsonPath("$.nickName")
-            .value(is(DEFAULT_NICK_NAME))
+            .jsonPath("$.displayName")
+            .value(is(DEFAULT_DISPLAY_NAME))
             .jsonPath("$.type")
-            .value(is(DEFAULT_TYPE.toString()));
+            .value(is(DEFAULT_TYPE.toString()))
+            .jsonPath("$.presenter")
+            .value(is(DEFAULT_PRESENTER.toString()));
     }
 
     @Test
@@ -247,7 +259,12 @@ class UnitListResourceIT {
 
         // Update the unitList
         UnitList updatedUnitList = unitListRepository.findById(unitList.getId()).block();
-        updatedUnitList.createTimeStamp(UPDATED_CREATE_TIME_STAMP).num(UPDATED_NUM).nickName(UPDATED_NICK_NAME).type(UPDATED_TYPE);
+        updatedUnitList
+            .createTimeStamp(UPDATED_CREATE_TIME_STAMP)
+            .num(UPDATED_NUM)
+            .displayName(UPDATED_DISPLAY_NAME)
+            .type(UPDATED_TYPE)
+            .presenter(UPDATED_PRESENTER);
         UnitListDTO unitListDTO = unitListMapper.toDto(updatedUnitList);
 
         webTestClient
@@ -265,8 +282,9 @@ class UnitListResourceIT {
         UnitList testUnitList = unitListList.get(unitListList.size() - 1);
         assertThat(testUnitList.getCreateTimeStamp()).isEqualTo(UPDATED_CREATE_TIME_STAMP);
         assertThat(testUnitList.getNum()).isEqualTo(UPDATED_NUM);
-        assertThat(testUnitList.getNickName()).isEqualTo(UPDATED_NICK_NAME);
+        assertThat(testUnitList.getDisplayName()).isEqualTo(UPDATED_DISPLAY_NAME);
         assertThat(testUnitList.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testUnitList.getPresenter()).isEqualTo(UPDATED_PRESENTER);
     }
 
     @Test
@@ -349,7 +367,7 @@ class UnitListResourceIT {
         UnitList partialUpdatedUnitList = new UnitList();
         partialUpdatedUnitList.setId(unitList.getId());
 
-        partialUpdatedUnitList.nickName(UPDATED_NICK_NAME).type(UPDATED_TYPE);
+        partialUpdatedUnitList.displayName(UPDATED_DISPLAY_NAME).type(UPDATED_TYPE);
 
         webTestClient
             .patch()
@@ -366,8 +384,9 @@ class UnitListResourceIT {
         UnitList testUnitList = unitListList.get(unitListList.size() - 1);
         assertThat(testUnitList.getCreateTimeStamp()).isEqualTo(DEFAULT_CREATE_TIME_STAMP);
         assertThat(testUnitList.getNum()).isEqualTo(DEFAULT_NUM);
-        assertThat(testUnitList.getNickName()).isEqualTo(UPDATED_NICK_NAME);
+        assertThat(testUnitList.getDisplayName()).isEqualTo(UPDATED_DISPLAY_NAME);
         assertThat(testUnitList.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testUnitList.getPresenter()).isEqualTo(DEFAULT_PRESENTER);
     }
 
     @Test
@@ -381,7 +400,12 @@ class UnitListResourceIT {
         UnitList partialUpdatedUnitList = new UnitList();
         partialUpdatedUnitList.setId(unitList.getId());
 
-        partialUpdatedUnitList.createTimeStamp(UPDATED_CREATE_TIME_STAMP).num(UPDATED_NUM).nickName(UPDATED_NICK_NAME).type(UPDATED_TYPE);
+        partialUpdatedUnitList
+            .createTimeStamp(UPDATED_CREATE_TIME_STAMP)
+            .num(UPDATED_NUM)
+            .displayName(UPDATED_DISPLAY_NAME)
+            .type(UPDATED_TYPE)
+            .presenter(UPDATED_PRESENTER);
 
         webTestClient
             .patch()
@@ -398,8 +422,9 @@ class UnitListResourceIT {
         UnitList testUnitList = unitListList.get(unitListList.size() - 1);
         assertThat(testUnitList.getCreateTimeStamp()).isEqualTo(UPDATED_CREATE_TIME_STAMP);
         assertThat(testUnitList.getNum()).isEqualTo(UPDATED_NUM);
-        assertThat(testUnitList.getNickName()).isEqualTo(UPDATED_NICK_NAME);
+        assertThat(testUnitList.getDisplayName()).isEqualTo(UPDATED_DISPLAY_NAME);
         assertThat(testUnitList.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testUnitList.getPresenter()).isEqualTo(UPDATED_PRESENTER);
     }
 
     @Test

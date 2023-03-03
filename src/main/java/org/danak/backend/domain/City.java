@@ -34,7 +34,7 @@ public class City implements Serializable {
     private Set<Centre> centres = new HashSet<>();
 
     @Field("device")
-    @JsonIgnoreProperties(value = { "children", "city" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "children", "progresses", "city" }, allowSetters = true)
     private Set<Device> devices = new HashSet<>();
 
     @Field("province")

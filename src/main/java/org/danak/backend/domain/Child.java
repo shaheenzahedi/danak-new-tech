@@ -27,7 +27,7 @@ public class Child implements Serializable {
     private User user;
 
     @Field("progress")
-    @JsonIgnoreProperties(value = { "child", "singleUnit" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "child", "createdByDevice", "singleUnit" }, allowSetters = true)
     private Set<Progress> progresses = new HashSet<>();
 
     @Field("centre")
@@ -35,11 +35,11 @@ public class Child implements Serializable {
     private Centre centre;
 
     @Field("device")
-    @JsonIgnoreProperties(value = { "children", "city" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "children", "progresses", "city" }, allowSetters = true)
     private Device device;
 
     @Field("facilitator")
-    @JsonIgnoreProperties(value = { "user", "children", "centres" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "user", "children", "referedBy", "centres" }, allowSetters = true)
     private Facilitator facilitator;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

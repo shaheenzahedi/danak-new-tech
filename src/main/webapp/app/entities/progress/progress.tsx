@@ -50,6 +50,7 @@ export const Progress = () => {
                 <th>Create Time Stamp</th>
                 <th>Spent Time</th>
                 <th>Child</th>
+                <th>Created By Device</th>
                 <th>Single Unit</th>
                 <th />
               </tr>
@@ -67,6 +68,13 @@ export const Progress = () => {
                   </td>
                   <td>{progress.spentTime}</td>
                   <td>{progress.child ? <Link to={`/child/${progress.child.id}`}>{progress.child.id}</Link> : ''}</td>
+                  <td>
+                    {progress.createdByDevice ? (
+                      <Link to={`/device/${progress.createdByDevice.id}`}>{progress.createdByDevice.id}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
                   <td>{progress.singleUnit ? <Link to={`/single-unit/${progress.singleUnit.id}`}>{progress.singleUnit.id}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

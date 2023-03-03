@@ -28,8 +28,12 @@ public class Progress implements Serializable {
     @JsonIgnoreProperties(value = { "user", "progresses", "centre", "device", "facilitator" }, allowSetters = true)
     private Child child;
 
+    @Field("createdByDevice")
+    @JsonIgnoreProperties(value = { "children", "progresses", "city" }, allowSetters = true)
+    private Device createdByDevice;
+
     @Field("singleUnit")
-    @JsonIgnoreProperties(value = { "progresses", "unitList" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "progresses", "unitList", "config" }, allowSetters = true)
     private SingleUnit singleUnit;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -83,6 +87,19 @@ public class Progress implements Serializable {
 
     public Progress child(Child child) {
         this.setChild(child);
+        return this;
+    }
+
+    public Device getCreatedByDevice() {
+        return this.createdByDevice;
+    }
+
+    public void setCreatedByDevice(Device device) {
+        this.createdByDevice = device;
+    }
+
+    public Progress createdByDevice(Device device) {
+        this.setCreatedByDevice(device);
         return this;
     }
 

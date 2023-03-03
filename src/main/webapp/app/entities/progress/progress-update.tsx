@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IChild } from 'app/shared/model/child.model';
 import { getEntities as getChildren } from 'app/entities/child/child.reducer';
+import { IDevice } from 'app/shared/model/device.model';
+import { getEntities as getDevices } from 'app/entities/device/device.reducer';
 import { ISingleUnit } from 'app/shared/model/single-unit.model';
 import { getEntities as getSingleUnits } from 'app/entities/single-unit/single-unit.reducer';
 import { IProgress } from 'app/shared/model/progress.model';
@@ -24,6 +26,7 @@ export const ProgressUpdate = () => {
   const isNew = id === undefined;
 
   const children = useAppSelector(state => state.child.entities);
+  const devices = useAppSelector(state => state.device.entities);
   const singleUnits = useAppSelector(state => state.singleUnit.entities);
   const progressEntity = useAppSelector(state => state.progress.entity);
   const loading = useAppSelector(state => state.progress.loading);
@@ -42,6 +45,7 @@ export const ProgressUpdate = () => {
     }
 
     dispatch(getChildren({}));
+    dispatch(getDevices({}));
     dispatch(getSingleUnits({}));
   }, []);
 
@@ -58,6 +62,7 @@ export const ProgressUpdate = () => {
       ...progressEntity,
       ...values,
       child: children.find(it => it.id.toString() === values.child.toString()),
+      createdByDevice: devices.find(it => it.id.toString() === values.createdByDevice.toString()),
       singleUnit: singleUnits.find(it => it.id.toString() === values.singleUnit.toString()),
     };
 
@@ -77,6 +82,7 @@ export const ProgressUpdate = () => {
           ...progressEntity,
           createTimeStamp: convertDateTimeFromServer(progressEntity.createTimeStamp),
           child: progressEntity?.child?.id,
+          createdByDevice: progressEntity?.createdByDevice?.id,
           singleUnit: progressEntity?.singleUnit?.id,
         };
 
@@ -109,6 +115,22 @@ export const ProgressUpdate = () => {
                 <option value="" key="0" />
                 {children
                   ? children.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField
+                id="progress-createdByDevice"
+                name="createdByDevice"
+                data-cy="createdByDevice"
+                label="Created By Device"
+                type="select"
+              >
+                <option value="" key="0" />
+                {devices
+                  ? devices.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.id}
                       </option>

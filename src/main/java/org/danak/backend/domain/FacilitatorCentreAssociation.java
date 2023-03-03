@@ -25,7 +25,7 @@ public class FacilitatorCentreAssociation implements Serializable {
     private Instant joinDate;
 
     @Field("facilitator")
-    @JsonIgnoreProperties(value = { "user", "children", "centres" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "user", "children", "referedBy", "centres" }, allowSetters = true)
     private Facilitator facilitator;
 
     @Field("centre")

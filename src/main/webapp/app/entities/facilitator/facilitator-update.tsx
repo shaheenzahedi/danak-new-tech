@@ -54,6 +54,7 @@ export const FacilitatorUpdate = () => {
       ...facilitatorEntity,
       ...values,
       user: users.find(it => it.id.toString() === values.user.toString()),
+      referedBy: users.find(it => it.id.toString() === values.referedBy.toString()),
     };
 
     if (isNew) {
@@ -72,6 +73,7 @@ export const FacilitatorUpdate = () => {
           ...facilitatorEntity,
           createTimeStamp: convertDateTimeFromServer(facilitatorEntity.createTimeStamp),
           user: facilitatorEntity?.user?.id,
+          referedBy: facilitatorEntity?.referedBy?.id,
         };
 
   return (
@@ -99,6 +101,16 @@ export const FacilitatorUpdate = () => {
                 placeholder="YYYY-MM-DD HH:mm"
               />
               <ValidatedField id="facilitator-user" name="user" data-cy="user" label="User" type="select">
+                <option value="" key="0" />
+                {users
+                  ? users.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField id="facilitator-referedBy" name="referedBy" data-cy="referedBy" label="Refered By" type="select">
                 <option value="" key="0" />
                 {users
                   ? users.map(otherEntity => (

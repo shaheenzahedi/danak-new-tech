@@ -29,6 +29,11 @@
       "relationshipType": "one-to-many"
     },
     {
+      "otherEntityName": "user",
+      "relationshipName": "referedBy",
+      "relationshipType": "many-to-one"
+    },
+    {
       "otherEntityName": "facilitatorCentreAssociation",
       "otherEntityRelationshipName": "facilitator",
       "relationshipName": "centre",

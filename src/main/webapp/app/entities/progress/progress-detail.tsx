@@ -42,6 +42,8 @@ export const ProgressDetail = () => {
           <dd>{progressEntity.spentTime}</dd>
           <dt>Child</dt>
           <dd>{progressEntity.child ? progressEntity.child.id : ''}</dd>
+          <dt>Created By Device</dt>
+          <dd>{progressEntity.createdByDevice ? progressEntity.createdByDevice.id : ''}</dd>
           <dt>Single Unit</dt>
           <dd>{progressEntity.singleUnit ? progressEntity.singleUnit.id : ''}</dd>
         </dl>
